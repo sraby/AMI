@@ -25,7 +25,10 @@
 			margin: 0;
 		}
 
-		#mainmap {width: 50%; height: 50vh; }
+		#mainmap {
+			width: 100%; 
+			height: 98vh; 
+		}
 
 		.info {
 		    padding: 6px 8px;
@@ -73,7 +76,7 @@
 
 			// BASEMAP
 
-			var map = L.map('mainmap').setView([40.716303, -73.940535], 10);
+			var map = L.map('mainmap').setView([40.716303, -73.940535], 11);
 
 			var tonerUrl = "https://stamen-tiles.a.ssl.fastly.net/toner-lite/{Z}/{X}/{Y}.png";
 
