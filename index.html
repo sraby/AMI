@@ -22,12 +22,16 @@
 
 		html, body {
 			height: 100%;
-			margin: 0;
+			background-color: "#E5EFED";
 		}
 
 		#mainmap {
 			width: 100%; 
 			height: 98vh; 
+		}
+
+		.leaflet-right .leaflet-control {
+			 pointer-events: none;  
 		}
 
 		.info {
@@ -55,6 +59,29 @@
 		    margin-right: 8px;
 		    opacity: 0.9;
 		}
+
+		/* Mobile */ 
+
+		@media (max-width: 625px) {
+
+			.leaflet-top .info {
+				width: 100%;
+				height: 25%;
+			}
+
+			/* .leaflet-top.leaflet-right {
+				position: fixed;
+			}
+
+			.leaflet-right{
+				left: 8px;
+				right: auto;
+
+			} 
+			*/
+
+
+		}
 	
 	</style>
 	
@@ -76,7 +103,7 @@
 
 			// BASEMAP
 
-			var map = L.map('mainmap').setView([40.716303, -73.940535], 11);
+			var map = L.map('mainmap').setView([40.716303, -73.940535], 10);
 
 			var tonerUrl = "https://stamen-tiles.a.ssl.fastly.net/toner-lite/{Z}/{X}/{Y}.png";
 
@@ -248,7 +275,7 @@
 			        '<b>' + props.Name + '</b><br/>' + 
 			        'Median Household Income: $' + numberWithCommas(Math.abs(props.MHI_2015)) +'<br/>' + 
 			        'That is <b>$' + numberWithCommas(Math.abs(props.Gap)) + ' ' + props.MHI_is_lower + props.MHI_is_higher + '</b> than AMI.'
-			        : 'Hover over a neighborhood');
+			        : 'Select a neighborhood');
 			};
 
 			info.addTo(map);
