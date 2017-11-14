@@ -19,8 +19,8 @@ var basemap = L.tileLayer(url, {
 
 /* 
 var basemap = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
-	maxZoom: 18,
-	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    maxZoom: 18,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 });
 */
 
@@ -71,39 +71,39 @@ function avgcolor(color1,color2){
 }
 
 function getColor(d) 
-	{
-		return d < -45000 ? '#d73027':
-			d < -30000 ? '#f46d43':
-			d < -15000 ? '#fdae61':
-			d < -5000 ? '#fee08b':
-			d < 5000 ? '#ffffbf':
-			d < 15000 ? '#d9ef8b':
-			d < 30000 ? '#a6d96a':
-			d < 45000 ? '#66bd63':
-			'#1a9850';
-		}
+    {
+        return d < -45000 ? '#d73027':
+            d < -30000 ? '#f46d43':
+            d < -15000 ? '#fdae61':
+            d < -5000 ? '#fee08b':
+            d < 5000 ? '#ffffbf':
+            d < 15000 ? '#d9ef8b':
+            d < 30000 ? '#a6d96a':
+            d < 45000 ? '#66bd63':
+            '#1a9850';
+        }
 
 function getBorder(d)
-	{
-		return d < -45000 ? avgcolor('#d73027','#f46d43'):
-			d < -30000 ? avgcolor('#f46d43','#fdae61'):
-			d < -15000 ? avgcolor('#fdae61','#fee08b'):
-			d < -5000 ? avgcolor('#fee08b','#ffffbf'):
-			d < 5000 ? avgcolor('#ffffbf','#d9ef8b'):
-			d < 15000 ? avgcolor('#d9ef8b','#a6d96a'):
-			d < 30000 ? avgcolor('#a6d96a','#66bd63'):
-			d < 45000 ? avgcolor('#66bd63','#1a9850'):
-			avgcolor('#1a9850','#006837');
-		}
+    {
+        return d < -45000 ? avgcolor('#d73027','#f46d43'):
+            d < -30000 ? avgcolor('#f46d43','#fdae61'):
+            d < -15000 ? avgcolor('#fdae61','#fee08b'):
+            d < -5000 ? avgcolor('#fee08b','#ffffbf'):
+            d < 5000 ? avgcolor('#ffffbf','#d9ef8b'):
+            d < 15000 ? avgcolor('#d9ef8b','#a6d96a'):
+            d < 30000 ? avgcolor('#a6d96a','#66bd63'):
+            d < 45000 ? avgcolor('#66bd63','#1a9850'):
+            avgcolor('#1a9850','#006837');
+        }
 
 function style(feature) {
-	return {
+    return {
     fillColor: getColor(feature.properties.Gap),
     weight: 1.2,
     opacity: 0.9,
     color: getBorder(feature.properties.Gap),
     fillOpacity: 0.9
-	};
+    };
 }
 
 L.geoJson(AMI_data, {style: style}).addTo(map);
@@ -113,7 +113,7 @@ L.geoJson(AMI_data, {style: style}).addTo(map);
 var geojson;
 
 function highlightFeature(e) {
-	var layer = e.target;
+    var layer = e.target;
 
     layer.setStyle({
         weight: 3,
@@ -189,21 +189,21 @@ var div = L.DomUtil.create('div', 'info legend'),
 
 // loop through our density intervals and generate a label with a colored square for each interval
 
-		div.innerHTML = div.innerHTML + '<b>Community Income vs. AMI<b><br><br>'
+        div.innerHTML = div.innerHTML + '<b>Community Income vs. AMI<b><br><br>'
     for (var i = grades.length - 1; i > -1; i--) {
         div.innerHTML +=
             '<i style="background:' + getColor(grades[i] - 1) + '"></i> ' +
-				labels[i] + '<br>';
+                labels[i] + '<br>';
     }
 
     return div;
 };
 
-showLegend = true;  // default value showing the legend
-
 legend.addTo(map);
 
 //LEGEND TOGGLE 
+
+showLegend = false;  // default value showing the legend
 
 var toggleLegend = function(){
         if(showLegend === true){
