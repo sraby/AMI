@@ -6,14 +6,14 @@
 	
 	<title>AMI Map</title>
 
-	<!-- Leaflet CSS -->
 	<link rel="stylesheet" href="css/style.css"/>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css"
    integrity="sha512-M2wvCLH6DSRazYeZRIm1JnYyh22purTM+FDB5CsyxtQJYeKq83arPe5wgbNmcFXGqiSH2XR8dT/fJISVA1r/zQ=="
    crossorigin=""/>
 
-    <!-- Leaflet JS (Make sure you put this AFTER Leaflet's CSS) -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
  	<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"
    integrity="sha512-lInM/apFSqyy1o6s89K4iQUKg6ppXEgsVxT35HbzUupEVRh2Eu9Wdl4tHj7dZO0s1uvplcYGmt3498TtHq+log=="
    crossorigin=""></script>
@@ -24,15 +24,22 @@
 
 <body>
 
-	<div id="mainmap"></div>
+	<div id="mainmap">
+
+		<div id="legend-toggle">
+			<button id="legend-toggle-button" class="btn btn-primary btn-small" onclick="toggleLegend();">
+				<b>i</b>
+			</button>
+
+		</div>
+
+	</div>
 
 		<!-- SCRIPT --> 
 
 		<script type="text/javascript" src="js/AMI_gap_by_PUMA.js"></script>
 
-		<script type="text/javascript" src="js/map.js"></script>
-
-		
+		<script type="text/javascript" src="js/map.js"></script>	
 
 </body>
 
