@@ -19,7 +19,7 @@ var basemap = L.tileLayer(url, {
 
 basemap.addTo(map);
 
-// LABELS
+// LINES
 
 map.createPane('lines');
 
@@ -72,21 +72,6 @@ labels.addTo(map);
 
 // SYMBOLOGY
 
-function avgcolor(color1,color2){
-    var avg  = function(a,b){ return (a+b)/2; },
-        t16  = function(c){ return parseInt((''+c).replace('#',''),16) },
-        hex  = function(c){ return (c>>0).toString(16) },
-        hex1 = t16(color1),
-        hex2 = t16(color2),
-        r    = function(hex){ return hex >> 16 & 0xFF},
-        g    = function(hex){ return hex >> 8 & 0xFF},
-        b    = function(hex){ return hex & 0xFF},
-        res  = '#' + hex(avg(r(hex1),r(hex2))) 
-                   + hex(avg(g(hex1),g(hex2))) 
-                   + hex(avg(b(hex1),b(hex2)));
-    return res;
-}
-
 function getColor(d) 
     {
         return d < -45000 ? '#d73027':
@@ -102,15 +87,15 @@ function getColor(d)
 
 function getBorder(d)
     {
-        return d < -45000 ? avgcolor('#d73027','#f46d43'):
-            d < -30000 ? avgcolor('#f46d43','#fdae61'):
-            d < -15000 ? avgcolor('#fdae61','#fee08b'):
-            d < -5000 ? avgcolor('#fee08b','#ffffbf'):
-            d < 5000 ? avgcolor('#ffffbf','#d9ef8b'):
-            d < 15000 ? avgcolor('#d9ef8b','#a6d96a'):
-            d < 30000 ? avgcolor('#a6d96a','#66bd63'):
-            d < 45000 ? avgcolor('#66bd63','#1a9850'):
-            avgcolor('#1a9850','#006837');
+        return d < -45000 ? '#E64F35':
+            d < -30000 ? '#F98E52':
+            d < -15000 ? '#FEC776':
+            d < -5000 ? '#FFF0A5':
+            d < 5000 ? '#ECF7A5':
+            d < 15000 ? '#C0E47B':
+            d < 30000 ? '#86CB67':
+            d < 45000 ? '#40AB5A':
+            '#0D8044';
         }
 
 function style(feature) {
@@ -178,12 +163,11 @@ function numberWithCommas(x) {
 var info = L.control();
 
 info.onAdd = function (map) {
-    this._div = L.DomUtil.create('div', 'info hovertext'); // create a div with a class "info"
+    this._div = L.DomUtil.create('div', 'info hovertext'); 
     this.update();
     return this._div;
 };
 
-// method that we will use to update the control based on feature properties passed
 info.update = function (props) {
     this._div.innerHTML = (props ?
         '<b>' + props.Name + '</b><br/>' + 
@@ -204,8 +188,6 @@ var div = L.DomUtil.create('div', 'info legend'),
     grades = [-45000, -30000, -15000, -5000, 5000, 15000, 30000, 45000, 60000],
     labels = ["$45,000 lower", "", "", "", "About the same", "", "", "", "$45,000 higher"];
 
-// loop through our density intervals and generate a label with a colored square for each interval
-
         div.innerHTML = div.innerHTML + '<b>Community Income vs. AMI<b><br><br>'
     for (var i = grades.length - 1; i > -1; i--) {
         div.innerHTML +=
@@ -220,21 +202,18 @@ legend.addTo(map);
 
 //LEGEND TOGGLE 
 
-showLegend = false;  // default value showing the legend
+showLegend = false; 
 
 var toggleLegend = function(){
         if(showLegend === true){
-        /* use jquery to select your DOM elements that has the class 'legend' */
-           $('.legend').hide(); 
-           $('#legend-toggle-button').html("<b>i</b>").css({'background':'#444','color':'#fff'});
-           //$('#legend-toggle-button:hover').css('background','#2DBED9');
-           showLegend = false; 
+           $('.legend').hide();
+           $('.legend-close-button').removeClass('legend-close-button').addClass('legend-toggle-button').html("<b>i</b>");
+           showLegend = false;  
         }
         else{
-           $('.legend').show();
-           $('#legend-toggle-button').html("<b>x</b>").css({'background':'rgba(0,0,0,0)','color':'#444'}).not(":hover");
-           //$('#legend-toggle-button:hover').css('background','#2DBED9');
-           showLegend = true; 
+           $('.legend').show(); 
+           $('.legend-toggle-button').removeClass('legend-toggle-button').addClass('legend-close-button').html("<b>x</b>");
+           showLegend = true;
         }
     }
 
