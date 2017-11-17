@@ -187,8 +187,8 @@ info.onAdd = function (map) {
 info.update = function (props) {
     this._div.innerHTML = (props ?
         '<b>' + props.Name + '</b><br/>' + 
-        'Median Household Income: $' + numberWithCommas(Math.abs(props.MHI_2015)) +'<br/>' + 
-        'That is <b>$' + numberWithCommas(Math.abs(props.Gap)) + ' </b><b class="red">' + props.MHI_is_lower +'</b><b class="green">'+ props.MHI_is_higher + '</b> than AMI.'
+        'Median HH Income: <b>$' + numberWithCommas(Math.abs(props.MHI_2015)) +'</b>.<br/>' + 
+        'That&#39;s <b>$' + numberWithCommas(Math.abs(props.Gap)) + ' </b><b class="red">' + props.MHI_is_lower +'</b><b class="green">'+ props.MHI_is_higher + '</b> than AMI.'
         : 'Select a neighborhood');
 };
 
