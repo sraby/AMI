@@ -19,11 +19,36 @@ var basemap = L.tileLayer(url, {
 
 basemap.addTo(map);
 
-/* LABELS
+// LABELS
+
+map.createPane('lines');
+
+map.getPane('lines').style.zIndex = 650;
+map.getPane('lines').style.pointerEvents = 'none';
+
+var tonerUrl = "https://stamen-tiles.a.ssl.fastly.net/toner-lines/{Z}/{X}/{Y}.png";
+
+var url = tonerUrl.replace(/({[A-Z]})/g, function(s) {
+    return s.toLowerCase();
+});
+
+var lines = L.tileLayer(url, {
+    subdomains: ['','a.','b.','c.','d.'],
+    minZoom: 13,
+    maxZoom: 20,
+    opacity: 0.3,
+    type: 'png',
+    attribution: '',
+    pane: 'lines'
+}); 
+
+lines.addTo(map);
+
+// LABELS 
 
 map.createPane('labels');
 
-map.getPane('labels').style.zIndex = 650;
+map.getPane('labels').style.zIndex = 651;
 map.getPane('labels').style.pointerEvents = 'none';
 
 var tonerUrl = "https://stamen-tiles.a.ssl.fastly.net/toner-labels/{Z}/{X}/{Y}.png";
@@ -34,9 +59,9 @@ var url = tonerUrl.replace(/({[A-Z]})/g, function(s) {
 
 var labels = L.tileLayer(url, {
     subdomains: ['','a.','b.','c.','d.'],
-    minZoom: 0,
+    minZoom: 14,
     maxZoom: 20,
-    opacity: 1,
+    opacity: 0.5,
     type: 'png',
     attribution: '',
     pane: 'labels'
@@ -44,7 +69,6 @@ var labels = L.tileLayer(url, {
 
 labels.addTo(map);
 
-*/
 
 // SYMBOLOGY
 
