@@ -1,6 +1,6 @@
 // BASEMAP
 
-var map = L.map('mainmap', {scrollWheelZoom: false}).setView([40.716303, -73.940535], 10);
+var map = L.map('mainmap', {scrollWheelZoom: false, attributionControl: false}).setView([40.716303, -73.940535], 10);
 
 var tonerUrl = "https://stamen-tiles.a.ssl.fastly.net/toner-lite/{Z}/{X}/{Y}.png";
 
@@ -13,16 +13,9 @@ var basemap = L.tileLayer(url, {
     minZoom: 0,
     maxZoom: 20,
     opacity: 0.5,
-    type: 'png',
-    attribution: 'Tiles: <a href="http://stamen.com">Stamen Design</a> (<a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>). Data: <a href="http://openstreetmap.org">OpenStreetMap</a> (<a href="http://www.openstreetmap.org/copyright">ODbL</a>).'
+    type: 'png'
 }); 
 
-/* 
-var basemap = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
-    maxZoom: 18,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-});
-*/
 
 basemap.addTo(map);
 
@@ -171,7 +164,7 @@ info.update = function (props) {
     this._div.innerHTML = (props ?
         '<b>' + props.Name + '</b><br/>' + 
         'Median Household Income: $' + numberWithCommas(Math.abs(props.MHI_2015)) +'<br/>' + 
-        'That is <b>$' + numberWithCommas(Math.abs(props.Gap)) + ' ' + props.MHI_is_lower + props.MHI_is_higher + '</b> than AMI.'
+        'That is <b>$' + numberWithCommas(Math.abs(props.Gap)) + ' </b><b class="red">' + props.MHI_is_lower +'</b><b class="green">'+ props.MHI_is_higher + '</b> than AMI.'
         : 'Select a neighborhood');
 };
 
@@ -209,9 +202,14 @@ var toggleLegend = function(){
         if(showLegend === true){
         /* use jquery to select your DOM elements that has the class 'legend' */
            $('.legend').hide(); 
+           $('#legend-toggle-button').html("<b>i</b>").css({'background':'#444','color':'#fff'});
+           //$('#legend-toggle-button:hover').css('background','#2DBED9');
            showLegend = false; 
-        }else{
+        }
+        else{
            $('.legend').show();
+           $('#legend-toggle-button').html("<b>x</b>").css({'background':'rgba(0,0,0,0)','color':'#444'}).not(":hover");
+           //$('#legend-toggle-button:hover').css('background','#2DBED9');
            showLegend = true; 
         }
     }
