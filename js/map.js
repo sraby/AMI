@@ -216,5 +216,3 @@ var toggleLegend = function(){
            showLegend = true;
         }
     }
-
-
