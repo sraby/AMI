@@ -212,7 +212,7 @@ var toggleLegend = function(){
         }
         else{
            $('.legend').show(); 
-           $('.legend-toggle-button').removeClass('legend-toggle-button').addClass('legend-close-button').html("<b>x</b>");
+           $('.legend-toggle-button').removeClass('legend-toggle-button').addClass('legend-close-button').html("<b> &#10005;</b>");
            showLegend = true;
         }
     }
